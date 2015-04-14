@@ -23,8 +23,10 @@
 
   "Combinations of these transformations is trivial"
   (= '(1 9 25 49 81)
+     
      (map (fn [x] (* x x))
           (filter odd? (range 10)))
+     
      (for [x (range 10) :when (odd? x)]
        (* x x)))
 
