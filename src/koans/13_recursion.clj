@@ -32,7 +32,8 @@
 (defn factorial-a [n]
      (if (= n 1)
        1
-       (* n (factorial (- n 1)))))
+       (* n (factorial-a (- n 1)))))
+
 ;1 if n= 0 or if n > 0 (n-1)! * n
 (defn factorial-tom [n]
   (loop [n n
