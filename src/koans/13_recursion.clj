@@ -23,13 +23,24 @@
   
   )))
 
+;;n! = n * [(n-1) * (n-2) * (n-3) ... = n * (n - 1)!
 (defn factorial [n]
+     (if (= n 1)
+       1
+       (* n (factorial (dec n)))))
+
+(defn factorial-a [n]
+     (if (= n 1)
+       1
+       (* n (factorial (- n 1)))))
+;1 if n= 0 or if n > 0 (n-1)! * n
+(defn factorial-tom [n]
   (loop [n n
-         acc 1]
-    (if (= 0 n)
-      acc
-     (recur (dec 1) (* n acc)) 
-     )))
+         acc 1];because anything times 1
+    (if (= n 0) ;if n =0 then 1, acc starts at 1
+      acc   
+      (recur (dec n) (* n acc) ))))
+    
 
 (meditations
   "Recursion ends with a base case"
@@ -60,7 +71,7 @@
   (= 24 (factorial 4))
 
   "You can even deal with very large numbers"
-  (< 1000000000000000000000000N (factorial 1000N))
+  (< 1000000000000000000000000N (factorial-tom 1000N))
 
   "But what happens when the machine limits you?"
-  (< 1000000000000000000000000N (factorial 100003N)))
+  (< 1000000000000000000000000N (factorial-tom 100003N)))
