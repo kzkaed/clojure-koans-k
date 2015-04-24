@@ -39,9 +39,13 @@
 
   "Or more succinctly"
   (= "123 Test Lane, Testerville, TX"
-     (let [{:keys [street-address city state]} test-address]
+     (let [{:keys [street-address city state]} test-address];variable name must correspond to keys
        (str street-address", " city", " state)))
 
   "All together now!"
   (= "Test Testerson, 123 Test Lane, Testerville, TX"
-     (___ ["Test" "Testerson"] test-address)))
+     ((fn [[test-str testerson-str]
+           {:keys [street-address city state]}]
+        (str test-str " " testerson-str ", " street-address ", " city ", " state)) 
+        ["Test" "Testerson"] test-address))
+  )
